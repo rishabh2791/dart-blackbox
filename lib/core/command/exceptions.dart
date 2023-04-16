@@ -1,0 +1,1 @@
+Exception noAppsRegistered = Exception("No Apps were registered. Make sure to include your apps in settings module.");

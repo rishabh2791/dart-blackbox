@@ -1,11 +1,18 @@
 
 
 import 'package:blackbox/core/command/command.dart';
+import 'package:blackbox/core/exceptions.dart';
 
 var version = "0.0.1";
-var release = Releases.alpha;
+var release = Release.alpha;
 
-enum Releases {alpha, beta, release}
+enum Release {alpha, beta, release}
+
+extension ParseToString on Release{
+  String toReadableString(){
+    return toString().split(".").last;
+  }
+}
 
 void runCommand(List arguments, Map<String,dynamic> env){
   if(arguments.isEmpty){
@@ -15,7 +22,7 @@ void runCommand(List arguments, Map<String,dynamic> env){
 
 void parseArguments(List<String> arguments){
   if(arguments.isEmpty){
-    throw Exception("Invalid Command,\n run manage.dart --help for more information.");
+    throw invalidCommandException;
   }
   
   String command = arguments[0];
